@@ -9,6 +9,14 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import com.example.fabioroommapvm.R
+import com.example.fabioroommapvm.viewModel.MarcadorVistaModelo
+import com.utsman.osmandcompose.DefaultMapProperties
+import com.utsman.osmandcompose.Marker
+import com.utsman.osmandcompose.OpenStreetMap
 import com.utsman.osmandcompose.ZoomButtonVisibility
 import com.utsman.osmandcompose.rememberCameraState
 import com.utsman.osmandcompose.rememberMarkerState
@@ -32,3 +40,13 @@ val GoogleSat: OnlineTileSourceBase = object : XYTileSource(
         ) + "&z=" + MapTileIndex.getZoom(aTile)
     }
 }
+
+@Composable
+fun MapaVista(
+    modifier: Modifier = Modifier,
+    vistaModelo: MarcadorVistaModelo,
+    context: Context // Contexto necesario para cargar los drawables
+) {
+
+    }
+
