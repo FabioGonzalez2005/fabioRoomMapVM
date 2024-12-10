@@ -8,5 +8,6 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface MarcadorDao {
 
-
+    @Insert
+    suspend fun insertarMarcador(marcador: Marcador)
 }
