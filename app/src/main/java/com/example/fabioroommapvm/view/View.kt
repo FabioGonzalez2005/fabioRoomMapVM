@@ -47,6 +47,30 @@ fun MapaVista(
     vistaModelo: MarcadorVistaModelo,
     context: Context // Contexto necesario para cargar los drawables
 ) {
+    val marcadoresConTipo by vistaModelo.marcadoresConTipo.collectAsState(initial = emptyList())
 
+    val cameraState = rememberCameraState {
+        geoPoint = GeoPoint(28.957375205489004, -13.554245657440829)
+        zoom = 17.0
     }
 
+    var mapProperties by remember {
+        mutableStateOf(DefaultMapProperties)
+    }
+
+    SideEffect {
+        mapProperties = mapProperties
+            .copy(tileSources = GoogleSat)
+            .copy(isEnableRotationGesture = true)
+            .copy(zoomButtonVisibility = ZoomButtonVisibility.NEVER)
+    }
+
+    OpenStreetMap(
+        modifier = modifier.fillMaxSize(),
+        cameraState = cameraState,
+        properties = mapProperties
+    ) {
+
+        }
+    }
+}
