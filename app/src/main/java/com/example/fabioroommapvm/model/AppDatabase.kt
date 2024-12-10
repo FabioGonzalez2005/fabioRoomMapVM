@@ -35,6 +35,10 @@ abstract class AppDatabase : RoomDatabase() {
 
         private suspend fun datosIniciales(tipoMarcadorDao: TipoMarcadorDao, marcadorDao: MarcadorDao) {
             val tipos = listOf(
+                TipoMarcador(tituloTipoMarcador = "Restaurante"),
+                TipoMarcador(tituloTipoMarcador = "Supermercado"),
+                TipoMarcador(tituloTipoMarcador = "Playa"),
+                TipoMarcador(tituloTipoMarcador = "Biblioteca")
             )
             val tiposFromDb = tipoMarcadorDao.obtenerTodosTipos().first()
 
