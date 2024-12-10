@@ -2,6 +2,9 @@ package com.example.fabioroommapvm.viewModel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.example.fabioroommapvm.model.MarcadorDao
+import com.example.fabioroommapvm.model.MarcadorConTipo
+import com.example.fabioroommapvm.model.TipoMarcador
 import kotlinx.coroutines.flow.Flow
 
 class MarcadorVistaModelo(private val marcadorDao: MarcadorDao) : ViewModel() {
