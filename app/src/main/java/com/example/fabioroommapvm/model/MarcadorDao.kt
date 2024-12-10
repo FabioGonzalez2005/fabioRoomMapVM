@@ -10,4 +10,7 @@ interface MarcadorDao {
 
     @Insert
     suspend fun insertarMarcador(marcador: Marcador)
+
+    @Query("SELECT * FROM MARCADORES")
+    fun obtenerTodosMarcadoresYTipos(): Flow<List<MarcadorConTipo>>
 }
