@@ -70,7 +70,24 @@ fun MapaVista(
         cameraState = cameraState,
         properties = mapProperties
     ) {
+        marcadoresConTipo.forEach { marcadorConTipo ->
+            val marcador = marcadorConTipo.marcador
+            val tipo = marcadorConTipo.tiposMarcadores[0].tituloTipoMarcador
 
-        }
+            val markerState = rememberMarkerState(
+                geoPoint = GeoPoint(marcador.coordenadaX, marcador.coordenadaY)
+            )
+
+            // Selección del ícono según el tipo
+            val markerIcon = when (tipo) {
+                "Restaurante" -> context.getDrawable(R.drawable.restaurant)
+                "Supermercado" -> context.getDrawable(R.drawable.supermercado)
+                "Playa" -> context.getDrawable(R.drawable.playa)
+                "Biblioteca" -> context.getDrawable(R.drawable.biblioteca)
+                else -> context.getDrawable(org.osmdroid.library.R.drawable.marker_default)
+            }
+
+            // Crear el marcador con el ícono
+
     }
 }
