@@ -29,6 +29,11 @@ class MainActivity : ComponentActivity() {
 
                     val vistaModelo: MarcadorVistaModelo = viewModel(factory = ViewModelFactory(daoMarcador))
 
+                    MapaVista(
+                        modifier = Modifier.padding(innerPadding),
+                        vistaModelo = vistaModelo,
+                        context = this
+                    )
                 }
             }
         }
