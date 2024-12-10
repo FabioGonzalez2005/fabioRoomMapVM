@@ -94,7 +94,25 @@ fun MapaVista(
                 snippet = tipo,
                 icon = markerIcon
             ) {
-
+                Column(
+                    modifier = Modifier
+                        .size(250.dp)
+                        .background(color = Color.LightGray, shape = RoundedCornerShape(12.dp))
+                        .padding(15.dp),
+                    verticalArrangement = Arrangement.Center,
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Text(
+                        text = it.title,
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 16.sp,
+                        color = Color.Black
+                    )
+                    Text(
+                        text = it.snippet,
+                        fontSize = 14.sp,
+                        color = Color.Gray
+                    )
                 }
             }
         }
