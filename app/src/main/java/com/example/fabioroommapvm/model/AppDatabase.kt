@@ -33,5 +33,24 @@ abstract class AppDatabase : RoomDatabase() {
             }
         }
 
+        private suspend fun datosIniciales(tipoMarcadorDao: TipoMarcadorDao, marcadorDao: MarcadorDao) {
+            val tipos = listOf(
+            )
+            val tiposFromDb = tipoMarcadorDao.obtenerTodosTipos().first()
+
+            if (tiposFromDb.isEmpty()) {
+                tipos.forEach {
+                    tipoMarcadorDao.insertarTipoMarcador(it)
+                }
+            }
+
+            val tiposFromDbUpdated = tipoMarcadorDao.obtenerTodosTipos().first()
+            val marcadores = listOf(
+            )
+
+            marcadores.forEach {
+                marcadorDao.insertarMarcador(it)
+            }
+        }
     }
 }
