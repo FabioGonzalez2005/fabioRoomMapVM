@@ -50,6 +50,16 @@ abstract class AppDatabase : RoomDatabase() {
 
             val tiposFromDbUpdated = tipoMarcadorDao.obtenerTodosTipos().first()
             val marcadores = listOf(
+                Marcador(tituloMarcador = "Restaurante La Tegala", coordenadaX = 28.972511, coordenadaY = -13.661507, idTipoMarcadorOwner = tiposFromDbUpdated[0].idTipoMarcador),
+                Marcador(tituloMarcador = "El Barquillo", coordenadaX = 29.029535, coordenadaY = -13.519138, idTipoMarcadorOwner = tiposFromDbUpdated[0].idTipoMarcador),
+                Marcador(tituloMarcador = "Supermercado Spar", coordenadaX = 29.003576, coordenadaY = -13.534444, idTipoMarcadorOwner = tiposFromDbUpdated[1].idTipoMarcador),
+                Marcador(tituloMarcador = "Superdino", coordenadaX = 28.992539, coordenadaY = -13.544739, idTipoMarcadorOwner = tiposFromDbUpdated[1].idTipoMarcador),
+                Marcador(tituloMarcador = "Playa de Papagayo", coordenadaX = 28.931591, coordenadaY = -13.832378, idTipoMarcadorOwner = tiposFromDbUpdated[2].idTipoMarcador),
+                Marcador(tituloMarcador = "Playa Blanca", coordenadaX = 28.869973, coordenadaY = -13.861702, idTipoMarcadorOwner = tiposFromDbUpdated[2].idTipoMarcador),
+                Marcador(tituloMarcador = "Playa de Famara", coordenadaX = 29.039871, coordenadaY = -13.527636, idTipoMarcadorOwner = tiposFromDbUpdated[2].idTipoMarcador),
+                Marcador(tituloMarcador = "Biblioteca Municipal de Arrecife", coordenadaX = 28.963180, coordenadaY = -13.550132, idTipoMarcadorOwner = tiposFromDbUpdated[3].idTipoMarcador),
+                Marcador(tituloMarcador = "Biblioteca de San Bartolomé", coordenadaX = 28.961247, coordenadaY = -13.571539, idTipoMarcadorOwner = tiposFromDbUpdated[3].idTipoMarcador),
+                Marcador(tituloMarcador = "Biblioteca de Teguise", coordenadaX = 29.041682, coordenadaY = -13.513833, idTipoMarcadorOwner = tiposFromDbUpdated[3].idTipoMarcador)
             )
 
             marcadores.forEach {
