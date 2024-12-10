@@ -88,6 +88,15 @@ fun MapaVista(
             }
 
             // Crear el marcador con el ícono
+            Marker(
+                state = markerState,
+                title = marcador.tituloMarcador,
+                snippet = tipo,
+                icon = markerIcon
+            ) {
 
+                }
+            }
+        }
     }
 }
