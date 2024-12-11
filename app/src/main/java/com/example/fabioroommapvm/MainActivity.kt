@@ -13,7 +13,6 @@ import com.example.fabioroommapvm.model.AppDatabase
 import com.example.fabioroommapvm.ui.theme.ViewModelRMTheme
 import com.example.fabioroommapvm.view.MapaVista
 import com.example.fabioroommapvm.viewModel.MarcadorVistaModelo
-import com.example.fabioroommapvm.viewModel.ViewModelFactory
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,7 +26,10 @@ class MainActivity : ComponentActivity() {
             ViewModelRMTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
 
-                    val vistaModelo: MarcadorVistaModelo = viewModel(factory = ViewModelFactory(daoMarcador))
+                    // Usamos el ViewModel
+                    val vistaModelo: MarcadorVistaModelo = viewModel {
+                        MarcadorVistaModelo(daoMarcador)
+                    }
 
                     MapaVista(
                         modifier = Modifier.padding(innerPadding),
@@ -39,4 +41,3 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-
