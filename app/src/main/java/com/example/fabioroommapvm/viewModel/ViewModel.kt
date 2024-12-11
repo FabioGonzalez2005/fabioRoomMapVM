@@ -2,8 +2,8 @@ package com.example.fabioroommapvm.viewModel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.fabioroommapvm.model.MarcadorDao
 import com.example.fabioroommapvm.model.MarcadorConTipo
+import com.example.fabioroommapvm.model.MarcadorDao
 import kotlinx.coroutines.flow.Flow
 
 // Clase ViewModel que conecta la capa de datos con la interfaz de usuario.
