@@ -9,23 +9,34 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
+// Clase que define la base de datos de la aplicación utilizando Room.
 @Database(entities = [Marcador::class, TipoMarcador::class], version = 8)
 abstract class AppDatabase : RoomDatabase() {
+
+    // Métodos abstractos para obtener los DAOs de las entidades.
     abstract fun marcadorDao(): MarcadorDao
     abstract fun tipoMarcadorDao(): TipoMarcadorDao
+
     companion object {
+        // Variable para almacenar la instancia única de la base de datos.
         @Volatile private var INSTANCE: AppDatabase? = null
+
         @OptIn(DelicateCoroutinesApi::class)
+        // Método para obtener o crear la instancia única de la base de datos.
         fun getDatabase(context: Context): AppDatabase {
             return INSTANCE ?: synchronized(this) {
+                // Construye la base de datos con las configuraciones necesarias.
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     AppDatabase::class.java,
                     "marcadores_database"
                 )
-                    .fallbackToDestructiveMigration()
+                    .fallbackToDestructiveMigration() // Permite reconstruir la base de datos si hay cambios en la versión.
                     .build()
+
                 INSTANCE = instance
+
+                // Inicializa datos predeterminados en la base de datos en un hilo global.
                 GlobalScope.launch {
                     datosIniciales(instance.tipoMarcadorDao(), instance.marcadorDao())
                 }
@@ -33,22 +44,30 @@ abstract class AppDatabase : RoomDatabase() {
             }
         }
 
+        // Función para insertar datos iniciales en la base de datos.
         private suspend fun datosIniciales(tipoMarcadorDao: TipoMarcadorDao, marcadorDao: MarcadorDao) {
+            // Lista de tipos predeterminados a insertar.
             val tipos = listOf(
                 TipoMarcador(tituloTipoMarcador = "Restaurante"),
                 TipoMarcador(tituloTipoMarcador = "Supermercado"),
                 TipoMarcador(tituloTipoMarcador = "Playa"),
                 TipoMarcador(tituloTipoMarcador = "Biblioteca")
             )
+
+            // Obtiene los tipos existentes de la base de datos.
             val tiposFromDb = tipoMarcadorDao.obtenerTodosTipos().first()
 
+            // Inserta los tipos predeterminados si no existen en la base de datos.
             if (tiposFromDb.isEmpty()) {
                 tipos.forEach {
                     tipoMarcadorDao.insertarTipoMarcador(it)
                 }
             }
 
+            // Obtiene los tipos actualizados desde la base de datos.
             val tiposFromDbUpdated = tipoMarcadorDao.obtenerTodosTipos().first()
+
+            // Lista de marcadores predeterminados con sus respectivas coordenadas y tipos asociados.
             val marcadores = listOf(
                 Marcador(tituloMarcador = "Restaurante La Tegala", coordenadaX = 28.972511, coordenadaY = -13.661507, idTipoMarcadorOwner = tiposFromDbUpdated[0].idTipoMarcador),
                 Marcador(tituloMarcador = "El Barquillo", coordenadaX = 29.029535, coordenadaY = -13.519138, idTipoMarcadorOwner = tiposFromDbUpdated[0].idTipoMarcador),
@@ -56,12 +75,13 @@ abstract class AppDatabase : RoomDatabase() {
                 Marcador(tituloMarcador = "Superdino", coordenadaX = 28.992539, coordenadaY = -13.544739, idTipoMarcadorOwner = tiposFromDbUpdated[1].idTipoMarcador),
                 Marcador(tituloMarcador = "Playa de Papagayo", coordenadaX = 28.931591, coordenadaY = -13.832378, idTipoMarcadorOwner = tiposFromDbUpdated[2].idTipoMarcador),
                 Marcador(tituloMarcador = "Playa Blanca", coordenadaX = 28.869973, coordenadaY = -13.861702, idTipoMarcadorOwner = tiposFromDbUpdated[2].idTipoMarcador),
-                Marcador(tituloMarcador = "Playa de Famara", coordenadaX = 29.039871, coordenadaY = -13.527636, idTipoMarcadorOwner = tiposFromDbUpdated[2].idTipoMarcador),
+                Marcador(tituloMarcador = "Playa de Famara", coordenadaX = 29.11529884448325, coordenadaY = -13.557611212563845, idTipoMarcadorOwner = tiposFromDbUpdated[2].idTipoMarcador),
                 Marcador(tituloMarcador = "Biblioteca Municipal de Arrecife", coordenadaX = 28.963180, coordenadaY = -13.550132, idTipoMarcadorOwner = tiposFromDbUpdated[3].idTipoMarcador),
                 Marcador(tituloMarcador = "Biblioteca de San Bartolomé", coordenadaX = 28.961247, coordenadaY = -13.571539, idTipoMarcadorOwner = tiposFromDbUpdated[3].idTipoMarcador),
-                Marcador(tituloMarcador = "Biblioteca de Teguise", coordenadaX = 29.041682, coordenadaY = -13.513833, idTipoMarcadorOwner = tiposFromDbUpdated[3].idTipoMarcador)
+                Marcador(tituloMarcador = "Biblioteca de Teguise", coordenadaX = 29.05992276261602, coordenadaY = -13.560779774412401, idTipoMarcadorOwner = tiposFromDbUpdated[3].idTipoMarcador)
             )
 
+            // Inserta los marcadores predeterminados en la base de datos.
             marcadores.forEach {
                 marcadorDao.insertarMarcador(it)
             }
