@@ -9,8 +9,10 @@ import kotlinx.coroutines.flow.Flow
 interface MarcadorDao {
 
     @Insert
+    // Función para insertar marcador
     suspend fun insertarMarcador(marcador: Marcador)
 
     @Query("SELECT * FROM MARCADORES")
+    // Flow proporciona una lista de todos los marcadores con su tipo
     fun obtenerTodosMarcadoresYTipos(): Flow<List<MarcadorConTipo>>
 }

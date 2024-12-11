@@ -32,7 +32,7 @@ class MainActivity : ComponentActivity() {
                     MapaVista(
                         modifier = Modifier.padding(innerPadding),
                         vistaModelo = vistaModelo,
-                        context = this
+                        context = this // Este contexto
                     )
                 }
             }
