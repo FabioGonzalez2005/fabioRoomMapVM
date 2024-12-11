@@ -10,32 +10,28 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
 // Clase que define la base de datos de la aplicación utilizando Room.
-@Database(entities = [Marcador::class, TipoMarcador::class], version = 10)
+@Database(entities = [Marcador::class, TipoMarcador::class], version = 11)
 abstract class AppDatabase : RoomDatabase() {
 
-    // Métodos abstractos para obtener los DAOs de las entidades.
     abstract fun marcadorDao(): MarcadorDao
     abstract fun tipoMarcadorDao(): TipoMarcadorDao
 
     companion object {
-        // Variable para almacenar la instancia única de la base de datos.
-        @Volatile private var INSTANCE: AppDatabase? = null
+        @Volatile
+        private var INSTANCE: AppDatabase? = null
 
         @OptIn(DelicateCoroutinesApi::class)
-        // Metodo para obtener o crear la instancia única de la base de datos.
         fun getDatabase(context: Context): AppDatabase {
             return INSTANCE ?: synchronized(this) {
-                // Construye la base de datos con las configuraciones necesarias.
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     AppDatabase::class.java,
                     "marcadores_database"
                 )
-                    .fallbackToDestructiveMigration() // Permite reconstruir la base de datos si hay cambios en la versión.
+                    .fallbackToDestructiveMigration()
                     .build()
 
                 INSTANCE = instance
-
                 // Inicializa datos predeterminados en la base de datos en un hilo global.
                 GlobalScope.launch {
                     datosIniciales(instance.tipoMarcadorDao(), instance.marcadorDao())
@@ -84,3 +80,5 @@ abstract class AppDatabase : RoomDatabase() {
         }
     }
 }
+
+
