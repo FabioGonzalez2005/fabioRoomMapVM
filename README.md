@@ -19,6 +19,8 @@ Los usuarios pueden explorar el mapa, visualizar información detallada de los m
 ### 🗄️ **Base de Datos Integrada**
 - Almacenamiento de marcadores en una base de datos.
 
+- ## **Resultado del mapa**
+![mapaResultado](https://github.com/user-attachments/assets/506e6cab-373b-4953-806a-8dd9800fdfce)
 
 ## Instalación del repositorio:
    ```bash
