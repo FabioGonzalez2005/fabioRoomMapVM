@@ -18,11 +18,8 @@ data class MarcadorConTipo(
     // El marcador principal, almacenado como un objeto incrustado en esta relación.
     @Embedded val marcador: Marcador,
 
-    // Relación entre el marcador y sus tipos.
-    // parentColumn: Columna en la tabla de marcadores que actúa como clave foránea.
-    // entityColumn: Columna en la tabla de tipos que coincide con la clave foránea.
     @Relation(
-        parentColumn = "idTipoMarcadorOwner",
+        parentColumn = "idTipoMarcador",
         entityColumn = "idTipoMarcador"
     )
     val tiposMarcadores: List<TipoMarcador> // Lista de tipos relacionados con el marcador.

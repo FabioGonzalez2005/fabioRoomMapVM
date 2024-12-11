@@ -12,5 +12,5 @@ data class Marcador(
     @ColumnInfo(name = "Título") val tituloMarcador: String,
     @ColumnInfo(name = "CoordenadaX") val coordenadaX: Double,
     @ColumnInfo(name = "CoordenadaY") val coordenadaY: Double,
-    val idTipoMarcadorOwner: Int
+    val idTipoMarcador: Int
 )
