@@ -15,9 +15,7 @@ data class TipoMarcador(
 
 // Clase de datos que representa la relación entre un marcador y sus tipos asociados.
 data class MarcadorConTipo(
-    // El marcador principal, almacenado como un objeto incrustado en esta relación.
     @Embedded val marcador: Marcador,
-
     @Relation(
         parentColumn = "idTipoMarcador",
         entityColumn = "idTipoMarcador"

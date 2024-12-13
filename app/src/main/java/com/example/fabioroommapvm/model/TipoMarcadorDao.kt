@@ -7,7 +7,6 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface TipoMarcadorDao {
-
     @Insert
     suspend fun insertarTipoMarcador(tipoMarcador: TipoMarcador)
 

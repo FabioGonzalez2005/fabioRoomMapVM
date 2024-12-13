@@ -62,7 +62,7 @@ fun MapaVista(
         mapProperties = mapProperties
             .copy(tileSources = GoogleSat)
             .copy(isEnableRotationGesture = true)
-            .copy(zoomButtonVisibility = ZoomButtonVisibility.NEVER)
+            .copy(zoomButtonVisibility = ZoomButtonVisibility.SHOW_AND_FADEOUT)
     }
 
     OpenStreetMap(
@@ -96,8 +96,8 @@ fun MapaVista(
             ) {
                 Column(
                     modifier = Modifier
-                        .size(250.dp)
-                        .background(color = Color.LightGray, shape = RoundedCornerShape(12.dp))
+                        .size(180.dp)
+                        .background(color = Color.White, shape = RoundedCornerShape(12.dp))
                         .padding(15.dp),
                     verticalArrangement = Arrangement.Center,
                     horizontalAlignment = Alignment.CenterHorizontally
@@ -106,15 +106,20 @@ fun MapaVista(
                         text = it.title,
                         fontWeight = FontWeight.Bold,
                         fontSize = 16.sp,
-                        color = Color.Black
+                        color = Color.Black,
+                        modifier = Modifier.fillMaxWidth(),
+                        textAlign = androidx.compose.ui.text.style.TextAlign.Center
                     )
                     Text(
                         text = it.snippet,
                         fontSize = 14.sp,
-                        color = Color.Gray
+                        color = Color.Black,
+                        modifier = Modifier.fillMaxWidth(),
+                        textAlign = androidx.compose.ui.text.style.TextAlign.Center
                     )
                 }
             }
         }
     }
 }
+
